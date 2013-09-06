@@ -6,9 +6,9 @@ import br.mackenzie.baladas.facebook.impl.FacebookImpl;
 public class ControllerFactory {
 	private static Facebook facebook;
 	
-	public static Facebook getFacebookInstance() {
+	public static Facebook getFacebookInstance(String code) {
 		if (facebook == null) {
-			facebook = new FacebookImpl();
+			facebook = new FacebookImpl(code);
 		}
 		return facebook;
 	}

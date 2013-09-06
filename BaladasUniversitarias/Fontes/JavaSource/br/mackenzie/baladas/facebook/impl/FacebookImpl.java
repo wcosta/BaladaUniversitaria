@@ -6,15 +6,19 @@ import br.mackenzie.baladas.facebook.Facebook;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.FacebookClient.AccessToken;
 import com.restfb.Parameter;
 import com.restfb.types.Event;
 
-public class FacebookImpl implements Facebook{	
+public class FacebookImpl implements Facebook{
+	private static final String ID_APP = "1410104595870928";
+	private static final String SEGREDO_APP = "41a45d319476e327c0a0f2812b0c0594";
+	
 	FacebookClient conectorFb;
 	
-	public FacebookImpl(){
-		String token = "CAAUCe4ZBIdNABAPdZAUXC3kjXI60eZBZAm8KPhInSGQ8SGSgrCx4bZCtijoq9KBn7ZA7n36fIbFOJa9fuYDXtSSI8RCab1CIATQWUtB7hO6qzo34I0OMMwOIXGsUGeXyV88QCUDeOPmAVDn52t1oMWeUB3mCjK9aFAraCTxP3sZAA2uHLHm8C4hu0CAm7MinTmJzJA4qFRFzwZDZD";
-		conectorFb = new DefaultFacebookClient(token);
+	public FacebookImpl(String token){
+		AccessToken accessToken = new DefaultFacebookClient().obtainExtendedAccessToken(ID_APP, SEGREDO_APP, token);
+		conectorFb = new DefaultFacebookClient(accessToken.getAccessToken());
 	}
 	
 	public List<Event> obterEventos() {

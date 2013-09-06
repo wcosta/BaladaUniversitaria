@@ -21,7 +21,8 @@ public class PaginaInicial extends HttpServlet {
 	       
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	response.setContentType("text/html;charset=UTF-8");
-        List<Event> listEvent = ControllerFactory.getFacebookInstance().obterEventos();
+    	String token = request.getParameter("token");
+        List<Event> listEvent = ControllerFactory.getFacebookInstance(token.trim()).obterEventos();
         request.setAttribute("Eventos", listEvent);
         RequestDispatcher rd = request.getRequestDispatcher("/jsp/PaginaInicial.jsp");
         rd.forward(request, response);
