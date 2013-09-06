@@ -3,6 +3,7 @@ package br.mackenzie.baladas.facebook.impl;
 import java.util.List;
 
 import br.mackenzie.baladas.facebook.Facebook;
+import br.mackenzie.baladas.facebook.to.Evento;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -21,7 +22,7 @@ public class FacebookImpl implements Facebook{
 		conectorFb = new DefaultFacebookClient(accessToken.getAccessToken());
 	}
 	
-	public List<Event> obterEventos() {
-		return this.conectorFb.fetchConnection("search", Event.class,  Parameter.with("type", "event"), Parameter.with("q", "universitária"), Parameter.with("timezone", "America/Sao_Paulo")).getData();
+	public List<Evento> obterEventos() {
+		return this.conectorFb.fetchConnection("search", Evento.class, Parameter.with("type", "event"), Parameter.with("q", "universitária")).getData();
 	}
 }

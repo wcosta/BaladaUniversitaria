@@ -41,6 +41,7 @@ String caminhoApp = request.getContextPath();
 				<th>Local</th>
 				<th>Início</th>
 				<th>Fim</th>
+				<th>Timezone</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,8 +50,9 @@ String caminhoApp = request.getContextPath();
 					<td><c:out value="${ev.id}"/></td>
 					<td><c:out value="${ev.name}"/></td>
 					<td><c:out value="${ev.location}"/></td>
-					<td><c:out value="${ev.startTime}"/></td>
-					<td><c:out value="${ev.endTime}"/></td>
+					<td><c:out value="${ev.dataInicio}"/></td>
+					<td><c:out value="${ev.dataFim}"/></td>
+					<td><c:out value="${ev.timezone}"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>

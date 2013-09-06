@@ -2,9 +2,9 @@ package br.mackenzie.baladas.facebook;
 
 import java.util.List;
 
-import com.restfb.types.Event;
+import br.mackenzie.baladas.facebook.to.Evento;
 
 
 public interface Facebook {
-	public List<Event> obterEventos();
+	public List<Evento> obterEventos();
 }
