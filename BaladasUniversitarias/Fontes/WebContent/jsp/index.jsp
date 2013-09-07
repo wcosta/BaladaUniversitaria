@@ -10,20 +10,24 @@
     <body>
         <div id="fb-root"></div>
         <script>
+          var applicationId = '1410104595870928';
+       	  var response;
           var accessToken = "";
           var uid = "";
           window.fbAsyncInit = function() {
             // init the FB JS SDK
             FB.init({
-              appId      : '1410104595870928',                        // App ID from the app dashboard
+              appId      : applicationId,                        // App ID from the app dashboard
               channelUrl : '//localhost', // Channel file for x-domain comms
               status     : true,                                 // Check Facebook Login status
               xfbml      : false                                  // Look for social plugins on the page
             });
 
             // Additional initialization code such as adding Event Listeners goes here
-            FB.login();
-            rodaScriptFB();
+            FB.login(function(response) {
+			   // handle the response
+			}, {scope: 'user_events'});
+            rodaScriptFB(response);
           };
 
           // Load the SDK asynchronously
@@ -37,7 +41,7 @@
            
            var body = 'Reading JS SDK documentation';
            
-           function rodaScriptFB(){
+           function rodaScriptFB(response){
              FB.getLoginStatus(function(response) {
                 if (response.status === 'connected') {
                   // the user is logged in and has authenticated your
@@ -48,6 +52,10 @@
                   uid = response.authResponse.userID;
                   accessToken = response.authResponse.accessToken;
                   window.location.replace('http://localhost:8080<%=request.getContextPath()%>/PaginaInicial?token='+accessToken);
+                } else if (response.status === 'not_authorized') {
+                	window.location.replace('https://www.facebook.com/dialog/oauth?client_id='+applicationId+'&redirect_uri=http://localhost:8080<%=request.getContextPath()%>/PaginaInicial?token='+accessToken);
+                } else {
+                
                 }
                });
             };
