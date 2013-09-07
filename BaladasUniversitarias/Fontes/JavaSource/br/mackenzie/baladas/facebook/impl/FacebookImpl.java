@@ -1,15 +1,16 @@
 package br.mackenzie.baladas.facebook.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import br.mackenzie.baladas.facebook.Facebook;
 import br.mackenzie.baladas.facebook.to.Evento;
 
+import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.FacebookClient.AccessToken;
 import com.restfb.Parameter;
-import com.restfb.types.Event;
 
 public class FacebookImpl implements Facebook{
 	private static final String ID_APP = "1410104595870928";
@@ -23,6 +24,23 @@ public class FacebookImpl implements Facebook{
 	}
 	
 	public List<Evento> obterEventos() {
-		return this.conectorFb.fetchConnection("search", Evento.class, Parameter.with("type", "event"), Parameter.with("q", "universitária")).getData();
+		List<Evento> listaAux = new LinkedList<Evento>();
+		Connection<Evento> con = this.conectorFb.fetchConnection("search", Evento.class, Parameter.with("type", "event"), Parameter.with("q", "universitária"));
+		listaAux.addAll(con.getData());
+		
+		while (con.getNextPageUrl() != null || "".equals(con.getNextPageUrl())) {
+			con = this.conectorFb.fetchConnectionPage(con.getNextPageUrl(), Evento.class);
+			listaAux.addAll(con.getData());
+		}
+		
+		return listaAux;
+	}
+	
+	public Evento obterDetalhesEvento(Evento ev) {
+		return obterDetalhesEventoPeloId(ev.getId());
+	}
+	
+	public Evento obterDetalhesEventoPeloId(String id) {
+		return this.conectorFb.fetchConnection("event", Evento.class, Parameter.with("id", id), Parameter.with("center", "-23.55073,-46.633837"), Parameter.with("distance", "10000")).getData().get(0);
 	}
 }

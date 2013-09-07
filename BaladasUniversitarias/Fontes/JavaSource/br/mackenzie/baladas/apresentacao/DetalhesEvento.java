@@ -8,26 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.mackenzie.baladas.facebook.to.ListaEventos;
+import br.mackenzie.baladas.facebook.to.Evento;
+import br.mackenzie.baladas.factory.ControllerFactory;
 
 /**
- * Servlet implementation class PaginaInicial
+ * Servlet implementation class DetalhesEvento
  */
-public class PaginaInicial extends HttpServlet {
+public class DetalhesEvento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	       
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    	response.setContentType("text/html;charset=UTF-8");
-    	String token = request.getParameter("token");
-        ListaEventos listaEventos = new ListaEventos(token.trim());
-        request.setAttribute("Eventos", listaEventos.getListaEventos());
-        request.setAttribute("access_token", token);
-        RequestDispatcher rd = request.getRequestDispatcher("/jsp/PaginaInicial.jsp");
-        rd.forward(request, response);
-    }
+	
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String token = request.getParameter("access_token");
+		String id = request.getParameter("idEvento");
+		
+		Evento evento = ControllerFactory.getFacebookInstance(token).obterDetalhesEventoPeloId(id);
+		
+		request.setAttribute("evento", evento);
 
-    
-    /**
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/DetalhesEvento.jsp");
+        rd.forward(request, response);
+	}
+       
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
