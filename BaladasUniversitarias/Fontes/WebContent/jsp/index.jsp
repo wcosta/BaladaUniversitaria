@@ -48,10 +48,6 @@
                   uid = response.authResponse.userID;
                   accessToken = response.authResponse.accessToken;
                   window.location.replace('http://localhost:8080<%=request.getContextPath()%>/PaginaInicial?token='+accessToken);
-                } else if (response.status === 'not_authorized') {
-                  alert("Usuário não autorizado!");
-                } else {
-                	alert("Usuário não está logado no Facebook!");
                 }
                });
             };
