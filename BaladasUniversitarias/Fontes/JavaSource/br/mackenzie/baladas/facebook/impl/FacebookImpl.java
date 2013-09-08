@@ -22,12 +22,16 @@ public class FacebookImpl implements Facebook{
 		AccessToken accessToken = new DefaultFacebookClient().obtainExtendedAccessToken(ID_APP, SEGREDO_APP, token);
 		conectorFb = new DefaultFacebookClient(accessToken.getAccessToken());
 	}
-	
+	 
 	public List<Evento> obterEventos() {
 		List<Evento> listaAux = new LinkedList<Evento>();
 		Connection<Evento> con = this.conectorFb.fetchConnection("search", Evento.class, Parameter.with("type", "event"), Parameter.with("q", "universitária"));
-		listaAux.addAll(con.getData());
+		Connection<Evento> mac = this.conectorFb.fetchConnection("search", Evento.class, Parameter.with("type", "event"), Parameter.with("q", "mack"));
+		Connection<Evento> each = this.conectorFb.fetchConnection("search", Evento.class, Parameter.with("type", "event"), Parameter.with("q", "EACH"));
 		
+		listaAux.addAll(con.getData());
+		listaAux.addAll(mac.getData());
+		listaAux.addAll(each.getData());
 		while (con.getNextPageUrl() != null || "".equals(con.getNextPageUrl())) {
 			con = this.conectorFb.fetchConnectionPage(con.getNextPageUrl(), Evento.class);
 			listaAux.addAll(con.getData());

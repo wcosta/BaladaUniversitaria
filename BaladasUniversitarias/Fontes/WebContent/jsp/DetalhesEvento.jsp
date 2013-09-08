@@ -7,38 +7,69 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Detalhes do Evento</title>
+
+<style type="text/css">
+		body{
+		background-color: lightgray;
+		}
+		.alignCenter{
+			margin-right: auto;
+			margin-left: auto;
+		}
+		.divBanner{
+			width: 802px;
+			height: 250px;
+		}
+		table tr.link{
+			cursor: pointer;
+		}
+		table tr td.nome {
+			width: 500px;
+			background-color: white;
+			font-size: large;
+			padding: 5px 10px 5px 10px;
+		}
+		table tr td {
+			width: 500px;
+			background-color: white;
+			padding: 5px 10px 5px 10px;
+		}
+	</style>
+
+
 </head>
 <body>
+<center>
 <table border="1">
 	<tbody>
-		<tr>
-			<td>
-				${evento.name}
-			</td>
+		<tr >
+			<td >
+				<img  src="http://graph.facebook.com/${evento.id}/picture"	></img>
+			</br>
+		    	<b>${evento.name}</b>
+		    </td >
 		</tr>
 		<tr>
 			<td>
-				Descrição
+				<b>Descrição</b> 	${evento.description}
 			</td>
 		</tr>
 		<tr>
-			<td>
-				${evento.description}
+			<td><b>Local:</b> ${evento.location}</td>
+		</tr>
+		<tr>
+			<td><b>Início:</b> ${evento.dataInicio}</td>
+		</tr>
+		<tr>
+			<td><b>Fim:</b> ${evento.dataFim}</td>
+		</tr>
+		<tr>
+			<td><b>Criador do evento:</b> 
+				<img border="1" src="http://graph.facebook.com/${evento.owner.id}/picture"	></img> ${evento.owner.name} 
 			</td>
-		</tr>
-		<tr>
-			<td>Local: ${evento.location}</td>
-		</tr>
-		<tr>
-			<td>Início: ${evento.dataInicio}</td>
-		</tr>
-		<tr>
-			<td>Fim: ${evento.dataFim}</td>
-		</tr>
-		<tr>
-			<td>Criador do evento: ${evento.owner.name}</td>
 		</tr>
 	</tbody>
 </table>
+</center>
 </body>
 </html>
