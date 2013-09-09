@@ -1,10 +1,8 @@
 BaladaUniversitaria
 ===================
 
-Aplicativo de balada universitária
-BaladaUniversitaria
 
-Aplicativo de Balada Universitária
+Aplicativo Balada Universitária
 
 Trabalho da Disciplina de Desenvolvimento de Software da Universidade Presbiteriana Mackenzie - Pós Graduação.
 
