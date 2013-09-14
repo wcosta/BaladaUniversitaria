@@ -1,0 +1,79 @@
+body{
+background-color: lightgray;
+}
+.alignCenter{
+	margin-right: auto;
+	margin-left: auto;
+}
+.divBanner{
+	width: 802px;
+	height: 250px;
+	margin: 0px auto 0px auto;
+}
+table.detalhes{
+	width: 500px;
+}
+table tr.link{
+	cursor: pointer;
+}
+table tr td.img {
+	width: 50px;
+	background-color: white;
+	padding: 5px 10px 5px 10px;
+}
+
+table tr td.nome {
+	width: 450px;
+	background-color: white;
+	font-size: large;
+	padding: 5px 10px 5px 10px;
+}
+table tr td {
+	background-color: white;
+	padding: 5px 10px 5px 10px;
+}
+
+div.alignCenter{
+	width: 120px;
+	margin: 0px auto 0px auto;
+}
+input.permissao{
+	height: 30px;
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	margin: 15px auto 15px auto;
+	font-size: medium;
+}
+input.voltar{
+	width: 100px;
+	height: 30px;
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	margin: 15px auto 15px auto;
+	font-size: medium;
+}
+input.publicar{
+	float: left;
+	height: 30px;
+	background-color: lightgray;
+	color: black;
+	font-weight: bold;
+	margin: 15px auto 15px auto;
+}
+input.confirmar{
+	float: right;
+	height: 30px;
+	background-color: lightgray;
+	color: black;
+	font-weight: bold;
+	margin: 15px auto 15px auto;
+}
+div.usuario{
+	width: 300px;
+	height: 100px;
+	margin: 10px auto 10px auto;
+	background-color: white;
+	font-size: large;
+}

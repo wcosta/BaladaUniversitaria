@@ -11,6 +11,8 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.FacebookClient.AccessToken;
 import com.restfb.Parameter;
+import com.restfb.types.FacebookType;
+import com.restfb.types.User;
 
 public class FacebookImpl implements Facebook{
 	private static final String ID_APP = "1410104595870928";
@@ -22,7 +24,11 @@ public class FacebookImpl implements Facebook{
 		AccessToken accessToken = new DefaultFacebookClient().obtainExtendedAccessToken(ID_APP, SEGREDO_APP, token);
 		conectorFb = new DefaultFacebookClient(accessToken.getAccessToken());
 	}
-	 
+	
+	public User obterUsuario(){
+		return this.conectorFb.fetchObject("me", User.class);
+	}
+	
 	public List<Evento> obterEventos() {
 		List<Evento> listaAux = new LinkedList<Evento>();
 		Connection<Evento> con = this.conectorFb.fetchConnection("search", Evento.class, Parameter.with("type", "event"), Parameter.with("q", "universitária"));
@@ -46,5 +52,20 @@ public class FacebookImpl implements Facebook{
 	
 	public Evento obterDetalhesEventoPeloId(String id) {
 		return this.conectorFb.fetchConnection("event", Evento.class, Parameter.with("id", id), Parameter.with("center", "-23.55073,-46.633837"), Parameter.with("distance", "10000")).getData().get(0);
+	}
+	
+	public void publicarEvento(String idEvento, String nomeEvento, String imgEvento, String path) {
+		String texto = "";
+		
+		texto += "Teste de trabalho:\nNome do Evento: " + nomeEvento;
+		this.conectorFb.publish("me/feed", FacebookType.class, Parameter.with("message", texto), Parameter.with("link", "https://facebook.com/events/" + idEvento));
+	}
+	
+	public void confirmarPresencaEvento(String idEvento){
+		try {
+			this.conectorFb.publish(idEvento+"/attending", FacebookType.class);
+		} catch(Exception e) {
+			//TODO
+		}
 	}
 }

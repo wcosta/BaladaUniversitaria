@@ -18,7 +18,7 @@ public class DetalhesEvento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String token = request.getParameter("access_token");
+		String token = (String) request.getSession().getAttribute("fb_token");
 		String id = request.getParameter("idEvento");
 		
 		Evento evento = ControllerFactory.getFacebookInstance(token).obterDetalhesEventoPeloId(id);
