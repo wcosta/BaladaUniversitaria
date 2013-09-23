@@ -2,9 +2,9 @@ package br.mackenzie.baladas.facebook;
 
 import java.util.List;
 
-import com.restfb.types.User;
-
 import br.mackenzie.baladas.facebook.to.Evento;
+
+import com.restfb.types.User;
 
 
 public interface Facebook {
@@ -12,6 +12,6 @@ public interface Facebook {
 	public List<Evento> obterEventos();
 	public Evento obterDetalhesEvento(Evento ev);
 	public Evento obterDetalhesEventoPeloId(String id);
-	public void publicarEvento(String idEvento, String nomeEvento,String imgEvento, String path);
+	public void publicarEvento(String idEvento, String nomeEvento);
 	public void confirmarPresencaEvento(String idEvento);
 }

@@ -57,10 +57,49 @@
 						<form action="<%=caminhoApp%>/PublicarEvento" method="post">
 							<input type="hidden" name="idEvento" value="${evento.id}"/>
 							<input type="hidden" name="nomeEvento" value="${evento.name}"/>
-							<input type="hidden" name="imgEvento" value="http://graph.facebook.com/${evento.owner.id}/picture"/>
 							<input class="publicar" type="submit" value="Publicar no Facebook"/>
 						</form>
 						<input class="confirmar" type="button" value="Confirmar presença" onclick="javascript: confirmaPresenca();"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="img">
+						Todos
+					</td>
+					<td class="nome">
+						${evento.fql.all_members_count}
+					</td>
+				</tr>
+				<tr>
+					<td class="img">
+						Confirmados
+					</td>
+					<td class="nome">
+						${evento.fql.attending_count}
+					</td>
+				</tr>
+				<tr>
+					<td class="img">
+						Recusado
+					</td>
+					<td class="nome">
+						${evento.fql.declined_count}
+					</td>
+				</tr>
+				<tr>
+					<td class="img">
+						Talvez
+					</td>
+					<td class="nome">
+						${evento.fql.unsure_count}
+					</td>
+				</tr>
+				<tr>
+					<td class="img">
+						LISTA
+					</td>
+					<td class="nome">
+						${evento.size}
 					</td>
 				</tr>
 			</tbody>

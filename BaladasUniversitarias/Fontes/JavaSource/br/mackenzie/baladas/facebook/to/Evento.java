@@ -1,5 +1,7 @@
 package br.mackenzie.baladas.facebook.to;
 
+import java.util.List;
+
 import br.mackenzie.baladas.util.FormatUtil;
 
 import com.restfb.Facebook;
@@ -10,6 +12,10 @@ public class Evento extends Event{
 	
 	@Facebook("timezone")
 	private String timezone;
+	
+	private EventoFql fql;
+	
+	private List<PresencaDetalhes> listaDetalhes;
 	
 	public String getDataInicio(){
 		if(super.getStartTime() != null) {
@@ -26,5 +32,20 @@ public class Evento extends Event{
 
 	public String getTimezone() {
 		return timezone;
+	}
+	public EventoFql getFql() {
+		return fql;
+	}
+	public void setFql(EventoFql fql) {
+		this.fql = fql;
+	}
+	public List<PresencaDetalhes> getListaDetalhes() {
+		return listaDetalhes;
+	}
+	public void setListaDetalhes(List<PresencaDetalhes> listaDetalhes) {
+		this.listaDetalhes = listaDetalhes;
+	}
+	public int getSize(){
+		return this.listaDetalhes.size();
 	}
 }

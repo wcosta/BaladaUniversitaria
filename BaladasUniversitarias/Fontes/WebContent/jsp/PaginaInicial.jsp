@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@page import="com.restfb.types.Event"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,28 +28,36 @@ function detalhesEvento(id) {
 		<img class="alignCenter" src="<%=caminhoApp%>/imagem/baladas.jpg" alt="Banner"/>
 	</div>
 	<div class="usuario">
-		<img src="graph.facebook.com/${Usuario.id}/picture" alt="Foto do perfil"/>
+		<img src="http://graph.facebook.com/${Usuario.id}/picture" alt="Foto do perfil"/>
 		<br/>
-		Logado como: ${Usuario.firstName} ${Usuario.lastName}
+		<span>Logado como: ${Usuario.firstName} ${Usuario.lastName}</span>
 	</div>
-	<div>
-		<table class="alignCenter" border="1">
-			<tbody>
-				<c:forEach items="${Eventos}" var="ev" varStatus="i">
-					<tr class="link" onclick="javascript: detalhesEvento(${ev.id})">
-						<td colspan="2" class="nome">
-							<b><c:out value="${ev.name}"/></b><br/>							
-							Local: <c:out value="${ev.location}"/><br/>
-							Início: <c:out value="${ev.dataInicio}"/>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<form name="detalhesEventoForm" action="<%=caminhoApp%>/DetalhesEvento" method="post">
-			<input type="hidden" name="token" value="${access_token}"/>
-			<input type="hidden" name="idEvento" value=""/>
-		</form>
-	</div>
+	<table class="main">
+		<tr>
+			<td>
+				<table class="alignCenter lista" border="1">
+					<tbody>
+						<c:forEach items="${Eventos}" var="ev" varStatus="i">
+							<tr class="link" onclick="javascript: detalhesEvento(${ev.id})">
+								<td colspan="2" class="nome">
+									<b><c:out value="${ev.name}"/></b><br/>							
+									Local: <c:out value="${ev.location}"/><br/>
+									Início: <c:out value="${ev.dataInicio}"/>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<form name="detalhesEventoForm" action="<%=caminhoApp%>/DetalhesEvento" method="post" target="iframeDetalhes">
+					<input type="hidden" name="token" value="${access_token}"/>
+					<input type="hidden" name="idEvento" value=""/>
+				</form>
+			</td>
+			<td>
+				<iframe class="detalhes" id="divDetalhes" name="iframeDetalhes">
+				</iframe>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

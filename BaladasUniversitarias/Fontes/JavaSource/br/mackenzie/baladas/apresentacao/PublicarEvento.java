@@ -24,9 +24,8 @@ public class PublicarEvento extends HttpServlet {
 		String token = (String) request.getSession().getAttribute("fb_token");
 		String id = request.getParameter("idEvento");
 		String nome = request.getParameter("nomeEvento");
-		String img = request.getParameter("imgEvento");
 		
-		ControllerFactory.getFacebookInstance(token).publicarEvento(id,nome,img,request.getContextPath());
+		ControllerFactory.getFacebookInstance(token).publicarEvento(id,nome);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/DetalhesEvento?idEvento="+id);
 		rd.forward(request, response);

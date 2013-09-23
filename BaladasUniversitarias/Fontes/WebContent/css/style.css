@@ -10,6 +10,27 @@ background-color: lightgray;
 	height: 250px;
 	margin: 0px auto 0px auto;
 }
+table.main{
+	width: 90%;
+	margin: 0 auto 0 auto;
+	border:0;
+	background-color: lightgray;
+}
+table.main td{
+	width:50%;
+	background-color: lightgray;
+}
+
+iframe.detalhes{
+	width:100%;
+	height:100%;
+	border: 0;
+	background-color: lightgray;
+	
+}
+table.lista{
+	width:500px;
+}
 table.detalhes{
 	width: 500px;
 }
@@ -72,8 +93,17 @@ input.confirmar{
 }
 div.usuario{
 	width: 300px;
-	height: 100px;
+	height: 70px;
 	margin: 10px auto 10px auto;
 	background-color: white;
 	font-size: large;
+}
+
+div.usuario img{
+	float:left;
+	padding:10px 5px 10px 5px;
+}
+div.usuario span{
+	float:right;
+	margin:10px 10px 10px 10px;
 }

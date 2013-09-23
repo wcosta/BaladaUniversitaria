@@ -1,10 +1,14 @@
 package br.mackenzie.baladas.facebook.impl;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import br.mackenzie.baladas.facebook.Facebook;
 import br.mackenzie.baladas.facebook.to.Evento;
+import br.mackenzie.baladas.facebook.to.EventoFql;
+import br.mackenzie.baladas.facebook.to.PresencaDetalhes;
+import br.mackenzie.baladas.util.ComparadorData;
 
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
@@ -42,6 +46,8 @@ public class FacebookImpl implements Facebook{
 			con = this.conectorFb.fetchConnectionPage(con.getNextPageUrl(), Evento.class);
 			listaAux.addAll(con.getData());
 		}
+		ComparadorData comparador = new ComparadorData();
+		Collections.sort(listaAux, comparador);
 		
 		return listaAux;
 	}
@@ -51,12 +57,40 @@ public class FacebookImpl implements Facebook{
 	}
 	
 	public Evento obterDetalhesEventoPeloId(String id) {
-		return this.conectorFb.fetchConnection("event", Evento.class, Parameter.with("id", id), Parameter.with("center", "-23.55073,-46.633837"), Parameter.with("distance", "10000")).getData().get(0);
+		
+		Evento ev = new Evento();
+		ev = this.conectorFb.fetchConnection("event", Evento.class, 
+				Parameter.with("id", id), 
+				Parameter.with("center", "-23.55073,-46.633837"), 
+				Parameter.with("distance", "10000"))
+				.getData().get(0);
+		String q = "SELECT eid, name, unsure_count, " +
+				"attending_count, declined_count, " +
+				"all_members_count FROM event WHERE eid = " + id;
+		EventoFql ef = this.conectorFb.executeFqlQuery(q, EventoFql.class).get(0);
+		ev.setFql(ef);
+		
+		ev.setListaDetalhes(obterDetalhesPresencas(id));
+		
+		return ev;
 	}
 	
-	public void publicarEvento(String idEvento, String nomeEvento, String imgEvento, String path) {
-		String texto = "";
+	public List<PresencaDetalhes> obterDetalhesPresencas(String id) {
+		List<PresencaDetalhes> detalhes = new LinkedList<PresencaDetalhes>();
 		
+		Connection<PresencaDetalhes> con = this.conectorFb.fetchConnection(id+"/invited", PresencaDetalhes.class);
+		detalhes.addAll(con.getData());
+		
+		while (con.hasNext()) {
+			con = this.conectorFb.fetchConnectionPage(con.getNextPageUrl(), PresencaDetalhes.class);
+			detalhes.addAll(con.getData());
+		}
+		
+		return detalhes;
+	}
+	
+	public void publicarEvento(String idEvento, String nomeEvento) {
+		String texto = "";
 		texto += "Teste de trabalho:\nNome do Evento: " + nomeEvento;
 		this.conectorFb.publish("me/feed", FacebookType.class, Parameter.with("message", texto), Parameter.with("link", "https://facebook.com/events/" + idEvento));
 	}
@@ -66,6 +100,7 @@ public class FacebookImpl implements Facebook{
 			this.conectorFb.publish(idEvento+"/attending", FacebookType.class);
 		} catch(Exception e) {
 			//TODO
+			//Bug do RestFB. Não consegue fazer uma requisição sem retorno.
 		}
 	}
 }
