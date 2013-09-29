@@ -8,10 +8,11 @@ import com.restfb.types.User;
 
 
 public interface Facebook {
-	public User obterUsuario();
+	public User obterUsuarioLogado();
 	public List<Evento> obterEventos();
-	public Evento obterDetalhesEvento(Evento ev);
-	public Evento obterDetalhesEventoPeloId(String id);
+	public Evento obterDetalhesEvento(String id);
 	public void publicarEvento(String idEvento, String nomeEvento);
 	public void confirmarPresencaEvento(String idEvento);
+	public List<User> obterPresencaAmigos(String idEvento);
+	public String getToken();
 }

@@ -24,9 +24,9 @@ public class PaginaInicial extends HttpServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
 		String token = request.getParameter("token");
-		request.getSession().setAttribute("fb_token", token);
 		Facebook fb = ControllerFactory.getFacebookInstance(token);
-		User usuario = fb.obterUsuario();
+		request.getSession().setAttribute("fb_token", token);
+		User usuario = fb.obterUsuarioLogado();
 		ListaEventos listaEventos = new ListaEventos(fb.obterEventos());
 		request.setAttribute("Usuario", usuario);
 		request.setAttribute("Eventos", listaEventos.getListaEventos());

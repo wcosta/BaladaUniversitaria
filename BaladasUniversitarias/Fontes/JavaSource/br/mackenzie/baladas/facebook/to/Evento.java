@@ -6,17 +6,30 @@ import br.mackenzie.baladas.util.FormatUtil;
 
 import com.restfb.Facebook;
 import com.restfb.types.Event;
+import com.restfb.types.User;
 
-public class Evento extends Event{
+public class Evento extends Event {
 	private static final long serialVersionUID = 7359230846748248825L;
 	
-	@Facebook("timezone")
+	@Facebook
 	private String timezone;
+	@Facebook
+	private String all_members_count;
+	@Facebook
+	private String attending_count;
+	@Facebook
+	private String declined_count;
+	@Facebook
+	private String unsure_count;
+	@Facebook
+	private String eid;
+	@Facebook 
+	private String creator;
 	
-	private EventoFql fql;
+	private User criador;
 	
-	private List<PresencaDetalhes> listaDetalhes;
-	
+	private List<User> listaAmigosPresentes;
+			
 	public String getDataInicio(){
 		if(super.getStartTime() != null) {
 			return FormatUtil.formataDataHora(super.getStartTime());
@@ -33,19 +46,34 @@ public class Evento extends Event{
 	public String getTimezone() {
 		return timezone;
 	}
-	public EventoFql getFql() {
-		return fql;
+	public String getAll_members_count() {
+		return all_members_count;
 	}
-	public void setFql(EventoFql fql) {
-		this.fql = fql;
+	public String getAttending_count() {
+		return attending_count;
 	}
-	public List<PresencaDetalhes> getListaDetalhes() {
-		return listaDetalhes;
+	public String getDeclined_count() {
+		return declined_count;
 	}
-	public void setListaDetalhes(List<PresencaDetalhes> listaDetalhes) {
-		this.listaDetalhes = listaDetalhes;
+	public String getUnsure_count() {
+		return unsure_count;
 	}
-	public int getSize(){
-		return this.listaDetalhes.size();
+	public String getEid() {
+		return eid;
+	}
+	public String getCreator() {
+		return creator;
+	}
+	public User getCriador() {
+		return criador;
+	}
+	public void setCriador(User criador) {
+		this.criador = criador;
+	}
+	public List<User> getListaAmigosPresentes() {
+		return listaAmigosPresentes;
+	}
+	public void setListaAmigosPresentes(List<User> listaAmigosPresentes) {
+		this.listaAmigosPresentes = listaAmigosPresentes;
 	}
 }

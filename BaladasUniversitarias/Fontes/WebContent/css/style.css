@@ -1,5 +1,10 @@
 body{
-background-color: lightgray;
+	background-color: lightgray;
+}
+span.mensagemSistema,td.mensagemSistema{
+	font-size: medium;
+	font-weight: bold;
+	color: red;
 }
 .alignCenter{
 	margin-right: auto;
@@ -53,7 +58,6 @@ table tr td {
 	background-color: white;
 	padding: 5px 10px 5px 10px;
 }
-
 div.alignCenter{
 	width: 120px;
 	margin: 0px auto 0px auto;
@@ -106,4 +110,65 @@ div.usuario img{
 div.usuario span{
 	float:right;
 	margin:10px 10px 10px 10px;
+}
+table.termometro{
+	width: 900px;
+}
+table tr td.termometro {
+	width:400px;
+	background-color: white;
+	padding: 5px 10px 5px 10px;
+}
+input.termometro{
+	width: 200px;
+	height: 30px;
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	margin: 15px auto 15px auto;
+	font-size: medium;
+}
+
+div.termometro0{
+	margin: 0 auto 0 auto;
+	color:black;
+	font-size:100px;
+	width:100px;
+	height:100px;
+}
+
+div.termometro20{
+	margin: 0 auto 0 auto;
+	color:blue;
+	font-size:100px;
+	width:100px;
+	height:100px;
+}
+
+div.termometro40{
+	margin: 0 auto 0 auto;
+	color:yellow;
+	font-size:100px;
+	width:100px;
+	height:100px;
+}
+
+div.termometro60{
+	margin: 0 auto 0 auto;
+	color:orange;
+	font-size:100px;
+	width:100px;
+	height:100px;
+}
+
+div.termometro80{
+	margin: 0 auto 0 auto;
+	color:red;
+	font-size:100px;
+	width:100px;
+	height:100px;
+}
+div span.legenda {
+	font-size: 20px;
+	font-weight: bold;
 }

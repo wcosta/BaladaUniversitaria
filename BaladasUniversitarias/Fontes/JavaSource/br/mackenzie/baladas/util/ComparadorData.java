@@ -12,6 +12,8 @@ public class ComparadorData implements Comparator<Evento>{
 		Date d1 = ((Evento) o1).getStartTime();
 		Date d2 = ((Evento) o2).getStartTime();
 		
+		if (d1 == null || d2 == null) return 0;
+		
 		return d1.compareTo(d2);
 	}
 

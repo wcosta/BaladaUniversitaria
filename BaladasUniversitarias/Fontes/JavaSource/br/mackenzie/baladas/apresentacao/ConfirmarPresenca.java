@@ -26,7 +26,7 @@ public class ConfirmarPresenca extends HttpServlet {
 		String id = request.getParameter("idEvento");
 		
 		ControllerFactory.getFacebookInstance(token).confirmarPresencaEvento(id);
-		
+		request.setAttribute("mensagemSistema", "Presença confirmada no evento.");
 		RequestDispatcher rd = request.getRequestDispatcher("/DetalhesEvento?idEvento="+id);
 		rd.forward(request, response);
 	}

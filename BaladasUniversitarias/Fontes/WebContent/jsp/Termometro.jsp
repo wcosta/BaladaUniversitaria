@@ -15,15 +15,7 @@
 		<script src="<%=caminhoApp%>/js/jquery-1.10.2.js"></script>
 	</head>
 	<body>
-	<script type="text/javascript">
-		function confirmaPresenca(){
-			var form = document.forms[0];
-			form.action = "<%=caminhoApp%>/ConfirmarPresenca";
-			form.submit();
-		}
-	</script>
-		<div id="detalhesEvento"></div>
-		<table border="1" class="detalhes alignCenter">
+		<table border="1" class="termometro alignCenter">
 			<tbody>
 				<tr >
 					<td class="img">
@@ -31,7 +23,22 @@
 					</td>
 					<td class="nome">
 				    	<b>${evento.name}</b>
-				    </td >
+				    </td>
+				    <td class="termometro alignCenter" rowspan="11">
+				    	<div class="${styleTermometro}">
+				    	<span class="legenda">${legendaTermometro}</span><br/>
+				    	${termometro}
+				    	</div><br/><br/>
+				    	<c:if test="${empty evento.listaAmigosPresentes}">
+				    		Nenhum dos seus amigos confirmaram presença.
+				    	</c:if>
+				    	<c:if test="${!empty evento.listaAmigosPresentes}">
+							Os seguintes amigos estarão presentes:
+							<c:forEach items="${evento.listaAmigosPresentes}" var="amigo" varStatus="i">
+								<img border="1" src="http://graph.facebook.com/${amigo.id}/picture"/> ${amigo.name}<br/>
+							</c:forEach>
+						</c:if>
+				    </td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -65,13 +72,6 @@
 						<input class="confirmar" type="button" value="Confirmar presença" onclick="javascript: confirmaPresenca();"/>
 					</td>
 				</tr>
-				<c:if test="${mensagemSistema ne null}">
-					<tr>
-						<td colspan="2" class="mensagemSistema">
-							${mensagemSistema}
-						</td>
-					</tr>
-				</c:if>
 				<tr>
 					<td class="img">
 						Todos
@@ -106,11 +106,5 @@
 				</tr>
 			</tbody>
 		</table>
-		<div class="alignCenter">
-			<form action="<%=caminhoApp%>/Termometro" target="_top" method="post">
-				<input type="hidden" name="idEvento" value="${evento.eid}" />
-				<input type="submit" class="termometro" value="Exibir Termômetro"/>
-			</form>
-		</div>
 	</body>
 </html>

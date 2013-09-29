@@ -26,7 +26,7 @@ public class PublicarEvento extends HttpServlet {
 		String nome = request.getParameter("nomeEvento");
 		
 		ControllerFactory.getFacebookInstance(token).publicarEvento(id,nome);
-		
+		request.setAttribute("mensagemSistema", "Evento publicado na linha de tempo com sucesso.");
 		RequestDispatcher rd = request.getRequestDispatcher("/DetalhesEvento?idEvento="+id);
 		rd.forward(request, response);
 	}

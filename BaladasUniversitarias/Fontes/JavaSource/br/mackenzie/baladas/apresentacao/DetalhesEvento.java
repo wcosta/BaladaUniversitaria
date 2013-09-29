@@ -21,7 +21,7 @@ public class DetalhesEvento extends HttpServlet {
 		String token = (String) request.getSession().getAttribute("fb_token");
 		String id = request.getParameter("idEvento");
 		
-		Evento evento = ControllerFactory.getFacebookInstance(token).obterDetalhesEventoPeloId(id);
+		Evento evento = ControllerFactory.getFacebookInstance(token).obterDetalhesEvento(id);
 		
 		request.setAttribute("evento", evento);
 

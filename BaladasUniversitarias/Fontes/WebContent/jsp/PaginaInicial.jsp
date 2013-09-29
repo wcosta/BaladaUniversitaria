@@ -14,6 +14,7 @@ String caminhoApp = request.getContextPath();
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Baladas Universitárias</title>
 	<link rel="stylesheet" type="text/css" href="<%=caminhoApp%>/css/style.css"/>
+	<script src="<%=caminhoApp%>/js/jquery-1.10.2.js"></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@ function detalhesEvento(id) {
 				<table class="alignCenter lista" border="1">
 					<tbody>
 						<c:forEach items="${Eventos}" var="ev" varStatus="i">
-							<tr class="link" onclick="javascript: detalhesEvento(${ev.id})">
+							<tr class="link" onclick="javascript: detalhesEvento(${ev.eid})">
 								<td colspan="2" class="nome">
 									<b><c:out value="${ev.name}"/></b><br/>							
 									Local: <c:out value="${ev.location}"/><br/>
@@ -49,7 +50,6 @@ function detalhesEvento(id) {
 					</tbody>
 				</table>
 				<form name="detalhesEventoForm" action="<%=caminhoApp%>/DetalhesEvento" method="post" target="iframeDetalhes">
-					<input type="hidden" name="token" value="${access_token}"/>
 					<input type="hidden" name="idEvento" value=""/>
 				</form>
 			</td>

@@ -15,9 +15,10 @@
 		</div>
 		
 		<div class="alignCenter">
-			<input class="permissao" type="button" 
-				onclick="location. href='<%=caminhoApp%>/jsp/Autorizacao.jsp'" 
-				value="Requisitar permissões"/>
+			<span class="mensagemSistema">${mensagemSistema}</span><br/>
+			<form action="<%=caminhoApp%>/jsp/Autorizacao.jsp" target="_top">
+			<input class="permissao" type="submit" value="Requisitar permissões"/>
+			</form>
 		</div>
     </body>
 </html>
