@@ -58,7 +58,7 @@
 				<tr>
 					<td colspan="2">
 						<form action="<%=caminhoApp%>/PublicarEvento" method="post">
-							<input type="hidden" name="idEvento" value="${evento.id}"/>
+							<input type="hidden" name="idEvento" value="${evento.eid}"/>
 							<input type="hidden" name="nomeEvento" value="${evento.name}"/>
 							<input class="publicar" type="submit" value="Publicar no Facebook"/>
 						</form>
