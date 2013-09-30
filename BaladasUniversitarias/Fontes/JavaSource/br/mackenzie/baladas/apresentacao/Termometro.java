@@ -35,7 +35,7 @@ public class Termometro extends HttpServlet {
 		
 		String styleTerm = "termometro";
 		String legenda = "";
-		if (term < 20) {
+		if (term <= 20) {
 			styleTerm += "0";
 			legenda = "Congelando!";
 		} else if (term >= 21 && term < 40) {
@@ -74,13 +74,30 @@ public class Termometro extends HttpServlet {
 		int conf = Integer.parseInt(e.getAttending_count());
 		int rec = Integer.parseInt(e.getDeclined_count());
 		int talvez = Integer.parseInt(e.getUnsure_count());
-		int todos = Integer.parseInt(e.getAll_members_count()) + conf + rec + talvez;
+		int todos = (Integer.parseInt(e.getAll_members_count()) + conf + rec + talvez);
 		
 		if(semanas == 3) talvez = (talvez * 80)/100;
 		else if (semanas == 2) talvez = (talvez * 65)/100;
 		else if (semanas == 1) talvez = (talvez * 50)/100;
+				
+		int congelado = todos * 20 / 100;
+		int frio = todos * 40 / 100;
+		int morno = todos * 60 / 100;
+		int quente = todos * 80 / 100;
 		
-		calc = todos / (conf + talvez);
+		
+		if(todos - (conf + talvez) < congelado)
+			calc = 19;
+		else if(todos - (conf + talvez) < frio)
+			calc = 39;
+		else if(todos - (conf + talvez) < morno)
+			calc = 59;
+		else if(todos - (conf + talvez) < quente)
+			calc = 79;
+		else
+			calc = 99;
+		
+		
 		
 		return calc;
 	}
