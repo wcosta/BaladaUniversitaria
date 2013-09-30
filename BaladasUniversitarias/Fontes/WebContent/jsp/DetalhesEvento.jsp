@@ -72,38 +72,6 @@
 						</td>
 					</tr>
 				</c:if>
-				<tr>
-					<td class="img">
-						Todos
-					</td>
-					<td class="nome">
-						${evento.all_members_count}
-					</td>
-				</tr>
-				<tr>
-					<td class="img">
-						Confirmados
-					</td>
-					<td class="nome">
-						${evento.attending_count}
-					</td>
-				</tr>
-				<tr>
-					<td class="img">
-						Recusado
-					</td>
-					<td class="nome">
-						${evento.declined_count}
-					</td>
-				</tr>
-				<tr>
-					<td class="img">
-						Talvez
-					</td>
-					<td class="nome">
-						${evento.unsure_count}
-					</td>
-				</tr>
 			</tbody>
 		</table>
 		<div class="alignCenter">
