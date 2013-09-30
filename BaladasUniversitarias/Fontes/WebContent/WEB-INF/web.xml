@@ -16,6 +16,30 @@
     <servlet-name>DetalhesEvento</servlet-name>
     <url-pattern>/DetalhesEvento</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Termometro</servlet-name>
+    <servlet-class>br.mackenzie.baladas.apresentacao.Termometro</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Termometro</servlet-name>
+    <url-pattern>/Termometro</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>PublicarEvento</servlet-name>
+    <servlet-class>br.mackenzie.baladas.apresentacao.PublicarEvento</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PublicarEvento</servlet-name>
+    <url-pattern>/PublicarEvento</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ConfirmarPresenca</servlet-name>
+    <servlet-class>br.mackenzie.baladas.apresentacao.ConfirmarPresenca</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfirmarPresenca</servlet-name>
+    <url-pattern>/ConfirmarPresenca</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
