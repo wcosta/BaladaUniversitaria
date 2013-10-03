@@ -25,15 +25,30 @@
 				    	<b>${evento.name}</b>
 				    </td>
 				    <td class="termometro alignCenter" rowspan="11">
-				    	<div class="${styleTermometro}">
-				    	<span class="legenda">${legendaTermometro}</span><br/>
-				    	${termometro}
-				    	</div><br/><br/>
+				    	<c:if test="${termometro eq 0}">
+					    	<div claas="alignCenter">
+						    	<span class="legenda">
+						    		O evento já passou!<br/>
+				    			</span>
+			    			</div>
+		    			</c:if>
+		    			<c:if test="${termometro ne 0}">
+					    	<div class="alignCenter">
+						    	<span class="legenda">
+						    		<c:if test="${termometro eq 0}">
+						    			O evento já passou!<br/>
+					    			</c:if>
+						    		${legendaTermometro}
+					    		</span><br/>
+				    		</div>
+					    	<div class="${styleTermometro}">
+					    	</div><br/><br/>
+				    	</c:if>
 				    	<c:if test="${empty evento.listaAmigosPresentes}">
 				    		Nenhum dos seus amigos confirmaram presença.
 				    	</c:if>
 				    	<c:if test="${!empty evento.listaAmigosPresentes}">
-							Os seguintes amigos estarão presentes:
+							Os seguintes amigos estarão presentes:<br />
 							<c:forEach items="${evento.listaAmigosPresentes}" var="amigo" varStatus="i">
 								<img border="1" src="http://graph.facebook.com/${amigo.id}/picture"/> ${amigo.name}<br/>
 							</c:forEach>
@@ -62,16 +77,7 @@
 						<b>Criador do evento:</b>${evento.criador.name} 
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2">
-						<form action="<%=caminhoApp%>/PublicarEvento" method="post">
-							<input type="hidden" name="idEvento" value="${evento.id}"/>
-							<input type="hidden" name="nomeEvento" value="${evento.name}"/>
-							<input class="publicar" type="submit" value="Publicar no Facebook"/>
-						</form>
-						<input class="confirmar" type="button" value="Confirmar presença" onclick="javascript: confirmaPresenca();"/>
-					</td>
-				</tr>
+		
 				<tr>
 					<td class="img">
 						Todos

@@ -49,7 +49,7 @@ public class Termometro extends HttpServlet {
 			legenda = "Quente!";
 		} else if (term >= 81) {
 			styleTerm += "80";
-			legenda = "BOMBANDO!!";
+			legenda = "Vai Bombar!!";
 		}
 
 		request.setAttribute("evento", ev);
@@ -80,24 +80,25 @@ public class Termometro extends HttpServlet {
 		else if (semanas == 2) talvez = (talvez * 65)/100;
 		else if (semanas == 1) talvez = (talvez * 50)/100;
 				
-		int congelado = todos * 20 / 100;
-		int frio = todos * 40 / 100;
-		int morno = todos * 60 / 100;
-		int quente = todos * 80 / 100;
+		int congelado = todos * 20 / 1000;
+		int frio = todos * 40 / 1000;
+		int morno = todos * 60 / 1000;
+		int quente = todos * 80 / 1000;
+		
+		calc = (conf + talvez - rec);
 		
 		
-		if(todos - (conf + talvez) < congelado)
+		
+		if(calc < congelado)
 			calc = 19;
-		else if(todos - (conf + talvez) < frio)
+		else if(calc < frio)
 			calc = 39;
-		else if(todos - (conf + talvez) < morno)
+		else if(calc < morno)
 			calc = 59;
-		else if(todos - (conf + talvez) < quente)
+		else if(calc < quente)
 			calc = 79;
 		else
 			calc = 99;
-		
-		
 		
 		return calc;
 	}

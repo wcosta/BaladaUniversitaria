@@ -99,7 +99,10 @@ public class FacebookImpl implements Facebook{
 		if(!list.isEmpty()) {
 			Iterator<AttendingFql> it = list.iterator();
 			while(it.hasNext()) {
-				listaRetorno.add(obterUsuarioPeloId(it.next().getUid()));
+				AttendingFql aux = it.next();
+				if("attending".equals(aux.getRsvp_status())){
+					listaRetorno.add(obterUsuarioPeloId(aux.getUid()));
+				}
 			}
 		}
 		return listaRetorno;

@@ -1,6 +1,9 @@
 body{
 	background-color: lightgray;
 }
+div{
+	margin:0 auto 0 auto;
+	}
 span.mensagemSistema,td.mensagemSistema{
 	font-size: medium;
 	font-weight: bold;
@@ -96,7 +99,7 @@ input.confirmar{
 	margin: 15px auto 15px auto;
 }
 div.usuario{
-	width: 300px;
+	width: 420px;
 	height: 70px;
 	margin: 10px auto 10px auto;
 	background-color: white;
@@ -133,42 +136,51 @@ div.termometro0{
 	margin: 0 auto 0 auto;
 	color:black;
 	font-size:100px;
-	width:100px;
-	height:100px;
+	width:109px;
+	height:306px;
+	background-image: url("../imagem/gelado.jpg");
 }
 
 div.termometro20{
 	margin: 0 auto 0 auto;
 	color:blue;
 	font-size:100px;
-	width:100px;
-	height:100px;
+	width:109px;
+	height:306px;
+	background-image: url("../imagem/frio.jpg");
 }
 
 div.termometro40{
 	margin: 0 auto 0 auto;
 	color:yellow;
 	font-size:100px;
-	width:100px;
-	height:100px;
+	width:109px;
+	height:306px;
+	background-image: url("../imagem/morno.jpg");
 }
 
 div.termometro60{
 	margin: 0 auto 0 auto;
 	color:orange;
 	font-size:100px;
-	width:100px;
-	height:100px;
+	width:109px;
+	height:306px;
+	background-image: url("../imagem/quente.jpg");
 }
 
 div.termometro80{
 	margin: 0 auto 0 auto;
 	color:red;
 	font-size:100px;
-	width:100px;
-	height:100px;
+	width:109px;
+	height:306px;
+	background-image: url("../imagem/bombar.jpg");
 }
 div span.legenda {
 	font-size: 20px;
 	font-weight: bold;
+	width: 300px !important;
+	margin:0 auto 0 auto;
+	background-color: lightgray;
+	text-align: center;
 }
